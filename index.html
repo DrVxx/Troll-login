@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Funny Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #eee;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      text-align: center;
+    }
+    input {
+      margin: 5px;
+      padding: 8px;
+    }
+    button {
+      padding: 8px 12px;
+      margin: 5px;
+      cursor: pointer;
+    }
+    #message {
+      margin-top: 15px;
+      font-size: 18px;
+    }
+    #mathChallenge {
+      display: none;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Login</h1>
+  <input type="text" id="username" placeholder="Username">
+  <input type="password" id="password" placeholder="Password"><br>
+  <button onclick="login()">Log in</button>
+  <button onclick="forgotPassword()">Forgot password or Username</button>
+  <p id="message"></p>
+
+  <div id="mathChallenge">
+    <p>Final step: What is 2 + 2?</p>
+    <input type="text" id="mathAnswer" placeholder="Your answer">
+    <button onclick="checkAnswer()">Submit</button>
+    <p id="mathMessage"></p>
+  </div>
+
+  <script>
+    let attempts = 0;
+
+    function login() {
+      attempts++;
+
+      const funnyErrors = [
+        "Wrong. This one looks like your WiFi password 📶",
+        "Nope. That’s your Roblox login 😂",
+        "Close… but that was your mom’s Facebook password 👩",
+        "Seriously? That’s your Netflix code 🍿",
+        "Haha nope, this is the dog’s birthday 🐶",
+        "Denied. This one is your Minecraft password ⛏️",
+        "Almost… but that’s your school laptop login 💻"
+      ];
+
+      if (attempts <= 7) {
+        document.getElementById("message").innerText = funnyErrors[attempts - 1];
+      } else {
+        document.getElementById("message").innerText = "One last step before you get in...";
+        document.getElementById("mathChallenge").style.display = "block";
+      }
+    }
+
+    function forgotPassword() {
+      document.getElementById("message").innerText = "Sorry i just don't wanna help today";
+    }
+
+    function checkAnswer() {
+      const answer = document.getElementById("mathAnswer").value;
+      if (answer == "5") {
+        window.location.href = "thankyou.html";
+      } else {
+        document.getElementById("mathMessage").innerText = "Nope, try again 😅";
+      }
+    }
+  </script>
+</body>
+</html>
